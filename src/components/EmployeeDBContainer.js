@@ -9,6 +9,7 @@ class EmployeeDBContainer extends Component {
   state = {
     result: [],
     search: "",
+    filteredResults: [],
   };
 
   headings = [
@@ -36,13 +37,22 @@ class EmployeeDBContainer extends Component {
 
   componentDidMount() {
     API.searchEmployees()
-      .then((res) => this.setState({ result: res.data.results }))
+      .then((res) =>
+        this.setState({
+          result: res.data.results,
+          filteredResults: res.data.results,
+        })
+      )
       .catch((err) => console.log(err));
   }
 
   handleInputChange = (event) => {
     console.log(event.target.value);
     this.setState({ search: event.target.value });
+    const filterEmployees = this.state.result.filter((employee) => {
+      return employee.name.last.indexOf(event.target.value) !== -1;
+    });
+    this.setState({ filteredResults: filterEmployees });
   };
 
   handleFormSubmit = (event) => {
@@ -50,7 +60,6 @@ class EmployeeDBContainer extends Component {
     API.searchEmployees(this.state.search)
       .then((res) => {
         if (res.data.status === "error") {
-          console.log(this.state.search);
           throw new Error(res.data.message);
         }
         this.setState({ results: res.data.message, error: "" });
@@ -67,7 +76,10 @@ class EmployeeDBContainer extends Component {
           handleInputChange={this.handleInputChange}
           search={this.state.search}
         />
-        <TableHead headings={this.headings} users={this.state.result} />
+        <TableHead
+          headings={this.headings}
+          users={this.state.filteredResults}
+        />
       </div>
     );
   }
