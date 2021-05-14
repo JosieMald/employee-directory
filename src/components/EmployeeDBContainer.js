@@ -50,7 +50,8 @@ class EmployeeDBContainer extends Component {
     console.log(event.target.value);
     this.setState({ search: event.target.value });
     const filterEmployees = this.state.result.filter((employee) => {
-      return employee.name.last.indexOf(event.target.value) !== -1;
+        const employeeObject = employee.name.last.toLowerCase();
+      return employeeObject.indexOf(this.state.search.toLowerCase()) !== -1;
     });
     this.setState({ filteredResults: filterEmployees });
   };
