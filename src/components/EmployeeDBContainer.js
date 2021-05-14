@@ -3,6 +3,7 @@ import API from "../utils/API";
 import SearchForm from "./SearchForm";
 // import TableBody from "./TableBody";
 import TableHead from "./TableHead";
+import Navbar from "./Navbar";
 
 class EmployeeDBContainer extends Component {
   state = {
@@ -39,27 +40,28 @@ class EmployeeDBContainer extends Component {
       .catch((err) => console.log(err));
   }
 
-  handleInputChange = event => {
-      console.log(event.target.value)
+  handleInputChange = (event) => {
+    console.log(event.target.value);
     this.setState({ search: event.target.value });
   };
 
-  handleFormSubmit = event => {
+  handleFormSubmit = (event) => {
     event.preventDefault();
     API.searchEmployees(this.state.search)
-    .then(res => {
+      .then((res) => {
         if (res.data.status === "error") {
-            console.log(this.state.search)
+          console.log(this.state.search);
           throw new Error(res.data.message);
         }
         this.setState({ results: res.data.message, error: "" });
       })
-      .catch(err => this.setState({ error: err.message }));
+      .catch((err) => this.setState({ error: err.message }));
   };
 
   render() {
     return (
       <div>
+        <Navbar />
         <SearchForm
           handleFormSubmit={this.handleFormSubmit}
           handleInputChange={this.handleInputChange}
