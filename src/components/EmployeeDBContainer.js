@@ -55,24 +55,11 @@ class EmployeeDBContainer extends Component {
     this.setState({ filteredResults: filterEmployees });
   };
 
-  handleFormSubmit = (event) => {
-    event.preventDefault();
-    API.searchEmployees(this.state.search)
-      .then((res) => {
-        if (res.data.status === "error") {
-          throw new Error(res.data.message);
-        }
-        this.setState({ results: res.data.message, error: "" });
-      })
-      .catch((err) => this.setState({ error: err.message }));
-  };
-
   render() {
     return (
       <div>
         <Navbar />
         <SearchForm
-          handleFormSubmit={this.handleFormSubmit}
           handleInputChange={this.handleInputChange}
           search={this.state.search}
         />
