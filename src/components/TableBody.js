@@ -6,7 +6,7 @@ function TableBody({ users, order }) {
     console.log(order)
     return (
         <tbody>
-            {users.map(({ name, login, email, picture, dob }) => {
+            {users.map(({ name, login, email, picture, location }) => {
                 return (
                     <tr key={login.uuid}>
                         <td>
@@ -24,7 +24,7 @@ function TableBody({ users, order }) {
                             {email}
                         </td>
                         <td>
-                            {dob.age}
+                            {location.state}
                         </td>
                     </tr>
                 )

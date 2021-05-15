@@ -30,7 +30,7 @@ class EmployeeDBContainer extends Component {
       width: "10px",
     },
     {
-      name: "D.O.B",
+      name: "State",
       width: "10px",
     },
   ];
