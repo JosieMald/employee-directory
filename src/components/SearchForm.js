@@ -1,5 +1,5 @@
 import React from "react";
-// import "./style.css";
+import "./style.css";
 
 // Using the datalist element we can create autofill suggestions based on the props.lastnames
 function SearchForm(props) {
@@ -12,6 +12,7 @@ function SearchForm(props) {
           type="text"
           className="form-control"
           placeholder="Search"
+          
         />
       </div>
     </form>

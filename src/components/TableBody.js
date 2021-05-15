@@ -11,6 +11,7 @@ function TableBody({ users, order }) {
                     <tr key={login.uuid}>
                         <td>
                           <img 
+                          className="images"
                           src={picture.medium} 
                           alt={name.first} />  
                         </td>

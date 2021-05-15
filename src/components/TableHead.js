@@ -13,10 +13,11 @@ function TableHead(props) {
         if (order === "ascend") {
             setOrder("desend")
             const sortedUsers = props.users.sort((a,b) => (a[headings] > b[headings])? 1: -1)
-            console.log(sortedUsers)
+            console.log(headings)
         } else {
-            
+            // let sortedUsers = props.users.sort((a,b) => (a[headings] > b[headings])? 1: -1)
             setOrder("ascend")
+            // console.log(sortedUsers)
         }
     }
     return (
